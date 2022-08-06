@@ -25,7 +25,7 @@ inning_part = 0
 #the bool "inning active" tells the program whether the inning is being played, and if it is set to false associated variables will reset and/or change
 #the var "inning_part" tells the program whether it is the top or bottom of the inning, and associates with the contants "HOME_TEAM" and "AWAY_TEAM"
 
-#the following are functions
+#the following are functions that simplify the process
 
 def strikeout():
     outs = outs + 1
@@ -49,6 +49,16 @@ def foul():
     pitches_current = pitches_current + 1
     pitches_total = pitches_total + 1
     strikes = strikes + 1
+def homerun():
+    if len(inning_part/2) == 1:
+        away_score = away_score + 1
+        strikes = 0
+        balls = 0
+    else:
+        home_score = home_score + 1
+        strikes = 0
+        balls = 0
+
 
 #the following provides a system to have variables interconnect (e.g. if the strike count goes up to 3, it resets and the outs go to 1)
 
@@ -64,6 +74,8 @@ while outs != 3:
         balls = balls + 1
     elif prompt == 'foul':
         foul()
+    elif prompt == 'homerun':
+        homerun()
 #this next portion determines when to change the out/ball/strike variables based upon the already existing vars
 while play_active == True:
     if strikes == 3:
@@ -72,3 +84,4 @@ while play_active == True:
         walk()
     elif outs == 3:
         third_out()
+        break
