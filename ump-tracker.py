@@ -15,6 +15,11 @@ HOME_TEAM = ""
 AWAY_TEAM = ""
 play_active = True
 inning_active = True
+inning_part = 0
+
+#the bool "play_active" tells the program whether the play is active, and when it's not a function resets certain variables to be able to continue the tracking
+#the bool "inning active" tells the program whether the inning is being played, and if it is set to false associated variables will reset and/or change
+#the var "inning_part" tells the program whether it is the top or bottom of the inning, and associates with the contants "HOME_TEAM" and "AWAY_TEAM"
 
 #the following provides a system to have variables interconnect (e.g. if the strike count goes up to 3, it resets and the outs go to 1)
 
@@ -35,3 +40,6 @@ while play_active == True:
         play_active = False
     elif balls == 4:
         play_active = False
+    elif outs == 3:
+        play_active = False
+        inning_active = False
