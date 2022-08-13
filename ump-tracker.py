@@ -1,7 +1,7 @@
 #proof of concept for ump app; this version built in python 3.10
 
 #input variable (doubles as input from user)
-prompt = input('')
+prompt = None
 
 #all variables:
 strikes = 0
@@ -34,6 +34,7 @@ def strikeout():
     play_active = False
     strikes = 0
     balls = 0
+
 def walk():
     outs = outs
     bb_current = bb_current + 1
@@ -41,16 +42,19 @@ def walk():
     play_active = False
     strikes = 0
     balls = 0
+
 def third_out():
     inning_active = False
     inning_part = inning_part + 1
-    outs  = 0
+    outs = 0
+
 def foul():
     pitches_current = pitches_current + 1
     pitches_total = pitches_total + 1
     strikes = strikes + 1
+
 def homerun():
-    if len(inning_part/2) == 1:
+    if len(inning_part/2) == 1 or 2:
         away_score = away_score + 1
         strikes = 0
         balls = 0
