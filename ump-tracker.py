@@ -1,7 +1,6 @@
-#proof of concept for ump app; this version built in python 3.10
+from simple_term_menu import TerminalMenu
 
-#input variable (doubles as input from user)
-prompt = None
+#proof of concept for ump app; this version built in python 3.10
 
 #all variables:
 strikes = 0
@@ -69,17 +68,18 @@ def homerun():
 #this portion specifically works with changes to ball/strike/pitch count variables
 while outs != 3:
     if prompt == 'strike':
-        pitches_total == pitches_total + 1
-        pitches_current == pitches_current + 1
-        strikes =  strikes + 1
+        pitches_total = pitches_total + 1
+        pitches_current = pitches_current + 1
+        strikes += 1
     elif prompt == 'ball':
-        pitches_total == pitches_total + 1
-        pitches_current == pitches_current + 1
+        pitches_total = pitches_total + 1
+        pitches_current = pitches_current + 1
         balls = balls + 1
     elif prompt == 'foul':
         foul()
     elif prompt == 'homerun':
         homerun()
+        
 #this next portion determines when to change the out/ball/strike variables based upon the already existing vars
 while play_active == True:
     if strikes == 3:
@@ -89,3 +89,6 @@ while play_active == True:
     elif outs == 3:
         third_out()
         break
+
+print(balls + ', ' + strikes)
+print(outs)
