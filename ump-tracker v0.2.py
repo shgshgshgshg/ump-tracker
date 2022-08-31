@@ -12,31 +12,32 @@ top_inn = True
 point_mod = int()
 
 while True:
-    options = ['[s] strike', '[b] ball', '[f] foul', '[h] hit']
+    if strikes == 2:
+        options.pop(2)
+    elif outs == 3:
+        print('balls: ' + str(balls))
+        print('strikes: ' + str(strikes))
+        print('outs: ' + str(outs))
+        print(HOME_TEAM + ' ' + str(home_score))
+        print(AWAY_TEAM + ' ' + str(away_score))
+        print('')
+        break
+
+    options = ['[s] strike', '[b] ball', '[f] foul']
     menu = TerminalMenu(options)
     idx = menu.show()
-    print(idx)
 
     if idx == 0:
         strikes += 1
     elif idx == 1:
         balls += 1
-    elif idx == 2 and strikes == 0 or 1:
-        strikes += 1
-    elif idx == 2 and strikes == 2:
-        pass
-    elif idx == 3:
-        point_mod = input('modify pts by: ')
-        if top_inn:
-            away_score += point_mod
+    elif idx == 2:
+        if strikes in (0, 1):
+            strikes += 1
         else:
-            home_score += point_mod
+            pass
 
     if outs == 3:
-        if top_inn:
-            top_inn = False
-        else:
-            top_inn = True
         break
     elif strikes == 3:
         outs += 1
@@ -51,3 +52,4 @@ while True:
     print('outs: ' + str(outs))
     print(HOME_TEAM + ' ' + str(home_score))
     print(AWAY_TEAM + ' ' + str(away_score))
+    print('')

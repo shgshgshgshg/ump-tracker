@@ -25,4 +25,4 @@ var play_active = false
 var inning_active = false
 var inning = 0
 
-//Functions
+print("hello world")
