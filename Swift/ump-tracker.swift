@@ -2,7 +2,7 @@
 //  ump_trackerApp.swift
 //  ump-tracker
 //
-//  Created by Simon Gil on 8/21/22.
+//  Created by shgshgshgshg on 8/21/22.
 //
 
 import SwiftUI
