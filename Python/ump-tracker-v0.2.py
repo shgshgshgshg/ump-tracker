@@ -11,6 +11,7 @@ AWAY_TEAM = 'NYY'
 top_inn = True
 inning = 1
 point_mod = int()
+INNINGS_TOTAL = input('How many innings will be played? ')
 
 while True:
     if outs == 3:
@@ -20,9 +21,29 @@ while True:
         print(HOME_TEAM + ': ' + str(home_score))
         print(AWAY_TEAM + ': ' + str(away_score))
         print('')
-        break
+        inning += 1
+        continue
+    elif top_inn:
+        top_inn = False
+        continue
+    elif inning == INNINGS_TOTAL and top_inn and home_score > away_score:
+        print('balls: ' + str(balls))
+        print('strikes: ' + str(strikes))
+        print('outs: ' + str(outs))
+        print(HOME_TEAM + ': ' + str(home_score))
+        print(AWAY_TEAM + ': ' + str(away_score))
+        print('Inning: ' + str(inning))
+        print(HOME_TEAM + ' wins!')
+    elif inning == INNINGS_TOTAL and top_inn == False and away_score > home_score:
+        print('balls: ' + str(balls))
+        print('strikes: ' + str(strikes))
+        print('outs: ' + str(outs))
+        print(HOME_TEAM + ': ' + str(home_score))
+        print(AWAY_TEAM + ': ' + str(away_score))
+        print('Inning: ' + str(inning))
+        print(AWAY_TEAM + ' wins!')
 
-    options = ['[s] strike', '[b] ball', '[f] foul', '[p] points modifier']
+    options = ['[s] strike', '[b] ball', '[f] foul', '[p] points modifier', '[x] modify other']
     menu = TerminalMenu(options)
     idx = menu.show()
 
@@ -42,30 +63,21 @@ while True:
         else:
             home_score = int(home_score) + int(point_mod)
         point_mod = 0
-
-    if outs == 3:
-        if top_inn == False:
-            inning += 1
-            continue
-        elif top_inn:
-            top_inn = False
-            continue
-        elif inning == 9 and top_inn and home_score > away_score:
-            print('balls: ' + str(balls))
-            print('strikes: ' + str(strikes))
-            print('outs: ' + str(outs))
-            print(HOME_TEAM + ': ' + str(home_score))
-            print(AWAY_TEAM + ': ' + str(away_score))
-            print(HOME_TEAM + ' wins!')
-        elif inning == 9 and top_inn == False and away_score > home_score:
-            print('balls: ' + str(balls))
-            print('strikes: ' + str(strikes))
-            print('outs: ' + str(outs))
-            print(HOME_TEAM + ': ' + str(home_score))
-            print(AWAY_TEAM + ': ' + str(away_score))
-            print(AWAY_TEAM + ' wins!')
-
-    elif strikes == 3:
+    elif idx == 4:
+        print("To determine what to change, write 's' for strike,")
+        print("'b' for balls, and 'o' for outs. Then write the number.")
+        modifier = input('')
+        modified = modifier.split()
+        if modified[0] == 'b':
+            balls += int(modified[1])
+            print('ball')
+        elif modified[0] == 's':
+            strikes += int(modified[1])
+            print('strike')
+        elif modified[0] == 'o':
+            outs += int(modified[1])
+            print('out')
+    if strikes == 3:
         outs += 1
         strikes = 0
         balls = 0
@@ -78,4 +90,5 @@ while True:
     print('outs: ' + str(outs))
     print(HOME_TEAM + ': ' + str(home_score))
     print(AWAY_TEAM + ': ' + str(away_score))
+    print('Inning: ' + str(inning))
     print('------------------------------------------')
