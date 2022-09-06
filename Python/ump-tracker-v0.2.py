@@ -24,7 +24,7 @@ def scoreboard():
 while True:    
     scoreboard()
 
-    options = ['[s] strike', '[b] ball', '[f] foul', '[p] points modifier', '[x] modify other']
+    options = ['[s] strike', '[b] ball', '[f] foul', '[p] points modifier', '[x] modify other', '[q] quit']
     menu = TerminalMenu(options)
     idx = menu.show()
 
@@ -51,6 +51,7 @@ while True:
         print(modified)
         if modified[0] == 'b':
             balls += int(modified[1])
+            balls = max(0, balls)
             print('ball')
         elif modified[0] == 's':
             strikes += int(modified[1])
@@ -58,7 +59,10 @@ while True:
             print('strike')
         elif modified[0] == 'o':
             outs += int(modified[1])
+            outs = max(0, outs)
             print('out')
+    elif idx == 5:
+        break
 
     if strikes >= 3:
         outs += 1
@@ -85,5 +89,3 @@ while True:
         scoreboard()
         print(AWAY_TEAM + ' wins!')
         break
-
-
