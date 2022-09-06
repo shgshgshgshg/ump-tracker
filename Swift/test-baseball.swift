@@ -1,16 +1,25 @@
+import SwiftUI
+
 var strikes = 0
 var balls = 0
 var outs = 0
+var proc = 0
 
 while true {
     print("type 's' for strike, 'b' for ball")
     print("input:")
     let input = readLine()
-
     if (input == "s") {
-        strikes += 1
+        proc == 0
     }
     else {
+        proc == 1
+    }
+
+    if (proc == 0) {
+        strikes += 1
+    }
+    else if (proc == 1) {
         balls += 1
     }
     print("Strikes: \(strikes)")
